@@ -3,7 +3,7 @@
 カンボジア向け輸出入・物流サポートのサービス案内サイトです。
 GitHub Pages で公開しています。
 
-**公開URL:** https://sasuraimitsu.github.io/smallearthtrading/
+**公開URL:** https://set-kh.github.io/smallearthtrading/
 
 ## 構成
 

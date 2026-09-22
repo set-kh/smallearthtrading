@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sasuraimitsu.github.io/smallearthtrading/sitemap.xml
+Sitemap: https://set-kh.github.io/smallearthtrading/sitemap.xml
