@@ -91,6 +91,36 @@ html[lang="en"] .lang-ja { display: none; }
 各便の確定日程はお知らせ欄と公式LINEで案内する運用のため、
 毎月の日付は料金表側を書き換える必要はありません。
 
+### お申込みフォームのURL
+
+お申込みは Google フォーム `https://forms.gle/Lw5NqFom9Lw9euzAA` に統一しています。
+フォームを作り直してURLが変わった場合は、次の箇所をすべて置換してください
+（`grep -rn "forms.gle" *.html` で一覧できます）。
+
+- `index.html`: ナビの「お申込み」、ヒーローのボタン、お知らせ、ご利用の流れ、お問い合わせ
+- `procedure.html`: ステップ1
+- `faq-more.html`: Q12・Q16
+- `important-matters.html`: 末尾の同意リンク
+
+### AIアシスタント（Telegram Bot）のリンク
+
+`index.html` の `<section id="ai-assistant">` にある
+`<a id="ai-bot-link" data-bot-url="">` の `data-bot-url` に
+`https://t.me/＜Bot名＞` を入れると、ボタンが Bot へのリンクになります
+（`script.js` が `https://t.me/` で始まる値のときだけ差し替えます）。
+空のままの間は「お問い合わせ」の Telegram QR へ誘導します。
+公開時は、同セクションの「近日公開」バッジ（`.ai-badge`）とお知らせの文言も更新してください。
+
+### 窓口の移行（LINE → Telegram）
+
+現在は「お申込み＝フォーム、ご相談＝公式LINE（日本語）／Telegram（English）」です。
+Telegram への移行が進んだら、次の順で差し替えます。
+
+1. `#ai-assistant` の Bot リンクを有効化（上記）
+2. ヒーローの第2ボタン（`.cta-button-secondary`）とお問い合わせの文言を「Telegram」優先に
+3. `#line-for-customers` セクション（LINE登録案内の動画）を Telegram 案内に置き換え
+4. 最後に LINE の QR（`lineofficial-set.jpg`）を外す
+
 ## 動作確認
 
 ローカルでは HTML ファイルをブラウザで直接開けば確認できます。

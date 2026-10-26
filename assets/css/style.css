@@ -139,9 +139,27 @@ html[lang="en"] .lang-ja { display: none; }
 .faq-item h3 { font-size: 1.2rem; margin-bottom: 0.3em; color: var(--primary-color);}
 .faq-more { margin-top: 30px; text-align: center; font-size: 1.1em; }
 .important-link { margin-top: 20px; font-size: 1.05em; font-weight: 700; }
-.contact-qr-container { text-align: center; margin-top: 30px; }
+.contact-qr-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; text-align: center; margin-top: 30px; }
+.contact-qr { margin: 0; }
+.contact-qr figcaption { margin-top: 10px; font-weight: 700; color: white; }
 .qr-code { width: 140px; height: auto; border: 1px solid #eee; }
 .qr-code-large { width: 200px; height: auto; border: 3px solid white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+/* ヒーローの2ボタン（申込フォーム／相談LINE） */
+.cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.cta-button-secondary { background-color: transparent; border: 2px solid white; }
+.cta-button-secondary:hover, .cta-button-secondary:focus { background-color: rgba(255,255,255,0.15); }
+.cta-note { margin-top: 1.2em; font-size: 0.95rem; }
+.cta-note a { color: white; text-decoration: underline; }
+
+/* ご利用の流れ（要約） */
+.flow-summary { padding-left: 1.4em; margin-bottom: 1.5em; }
+.flow-summary li { margin-bottom: 0.6em; }
+
+/* AIアシスタント */
+.ai-badge { display: inline-block; background-color: #fff3cd; color: #7a5a00; border: 1px solid #ffe08a; border-radius: 20px; padding: 4px 14px; font-size: 0.9rem; font-weight: 700; margin-bottom: 1em; }
+.ai-features { padding-left: 1.4em; }
+.ai-features li { margin-bottom: 0.6em; }
 
 /* フッター */
 .site-footer-bottom { background-color: #333; color: #f0f0f0; text-align: center; padding: 20px 0; font-size: 0.9rem; }
