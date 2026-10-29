@@ -131,10 +131,10 @@
                         <span class="lang-en">We now number each box on arrival at our warehouse, so you no longer need to write numbers or attach labels to your boxes. Please enter the courier and tracking number for each box in your cargo detail sheet.</span>
                     </p>
 
-                    <h4><span class="lang-ja">AIアシスタント（Telegram）を準備中</span><span class="lang-en">AI Assistant on Telegram (Coming Soon)</span></h4>
+                    <h4><span class="lang-ja">TelegramのAIアシスタントをご利用いただけます</span><span class="lang-en">AI Assistant Now Available on Telegram</span></h4>
                     <p>
-                        <span class="lang-ja">発送の登録・貨物詳細シートの入力・料金の概算をチャットで行える<a href="#ai-assistant">AIアシスタント</a>を準備しています。公開時にお知らせします。</span>
-                        <span class="lang-en">We are preparing an <a href="#ai-assistant">AI assistant</a> that lets you register shipments, fill in your cargo detail sheet and get price estimates via chat. We will announce it when it launches.</span>
+                        <span class="lang-ja">料金の概算、船便スケジュールのご案内、お申込みの確認などに24時間お答えする<a href="#ai-assistant">AIアシスタント</a>をTelegramでご利用いただけます。公式LINEでのご相談も引き続き承ります。</span>
+                        <span class="lang-en">Our <a href="#ai-assistant">AI assistant</a> is now available on Telegram, answering 24/7 about price estimates, sea freight schedules and application checks. Consultations on Official LINE continue as before.</span>
                     </p>
                 </article>
 
@@ -431,35 +431,36 @@
         </section>
 
         <!-- AIアシスタント（Telegram Bot）
-             Bot公開後は下の AI_BOT_URL（data-bot-url）に https://t.me/＜Bot名＞ を入れてください。
+             下の <a id="ai-bot-link" data-bot-url="https://t.me/＜Bot名＞"> がBotへのリンクです。
+             data-bot-url が https://t.me/ で始まる値なら、script.js がボタンのリンク先をBotに差し替えます。
              空のままだと「お問い合わせ」のTelegram QRへ誘導します。 -->
         <section id="ai-assistant" class="section-padding">
             <div class="container content-prose">
-                <h2><span class="lang-ja">AIアシスタント</span><span class="lang-en">AI Assistant</span></h2>
-                <p class="ai-badge"><span class="lang-ja">近日公開 — Telegramで提供予定</span><span class="lang-en">Coming soon — available on Telegram</span></p>
+                <h2><span class="lang-ja">AIアシスタント（Telegram）</span><span class="lang-en">AI Assistant (Telegram)</span></h2>
+                <p class="ai-badge ai-badge-live"><span class="lang-ja">24時間対応 — 日本語・English・ខ្មែរ</span><span class="lang-en">Available 24/7 — 日本語・English・ខ្មែរ</span></p>
                 <p>
-                    <span class="lang-ja">お申込み済みのお客様向けに、チャットで手続きを進められるAIアシスタントを準備しています。受付番号を伝えるだけで、以下の操作ができます。</span>
-                    <span class="lang-en">For customers who have applied, we are preparing an AI assistant that handles your procedures via chat. Just tell it your Receipt No. and you can:</span>
+                    <span class="lang-ja">Telegramで話しかけるだけで、AIアシスタントが輸送・買い付け代行のご相談にお答えします。お申込み前のご相談から、お申込み後の確認まで、以下のことができます。</span>
+                    <span class="lang-en">Just message our AI assistant on Telegram for help with shipping and the purchasing agent service — from pre-application questions to checking your application afterwards. It can:</span>
                 </p>
                 <ul class="ai-features">
-                    <li><span class="lang-ja"><strong>発送の登録</strong> — 宅配便の送り状番号を送るだけで、貨物詳細シートと弊社の集荷リストに反映</span><span class="lang-en"><strong>Register shipments</strong> — send the courier tracking number and it is added to your cargo detail sheet and our pickup list</span></li>
-                    <li><span class="lang-ja"><strong>商品情報の入力</strong> — 品名と数量を質問に答える形で登録（シートを開かずに完了）</span><span class="lang-en"><strong>Enter item details</strong> — answer a few questions (product, quantity) instead of editing the sheet</span></li>
-                    <li><span class="lang-ja"><strong>料金の概算</strong> — 重量や箱サイズから航空便・船便・買い付け代行の概算をその場で回答</span><span class="lang-en"><strong>Price estimates</strong> — instant estimates for air, sea and purchasing agent service from weight or box size</span></li>
-                    <li><span class="lang-ja"><strong>登録状況の確認</strong> — 提出期限、登録済みの箱・商品の一覧</span><span class="lang-en"><strong>Check your status</strong> — deadlines and a list of registered boxes and items</span></li>
+                    <li><span class="lang-ja"><strong>料金の概算</strong> — 箱のサイズ・箱数・重量や体積をお伝えいただくと、船便・航空便・お酒プラン・買い付け代行の参考見積りをその場で回答</span><span class="lang-en"><strong>Price estimates</strong> — tell it your box size, number of boxes, weight or volume and get an instant reference quote for sea, air, alcohol plans and the purchasing agent service</span></li>
+                    <li><span class="lang-ja"><strong>写真でのご相談</strong> — 送りたい商品の写真を送ると、内容を読み取って必要な確認事項だけをお聞きします</span><span class="lang-en"><strong>Photo consultations</strong> — send a photo of what you want to ship and it reads the contents and asks only what is needed</span></li>
+                    <li><span class="lang-ja"><strong>船便スケジュールの案内</strong> — 次回便の申込開始日・荷物の受入れ締切日・出航予定日をご案内。申込開始日になったらTelegramでお知らせする登録もできます</span><span class="lang-en"><strong>Sea freight schedule</strong> — application opening dates, cargo acceptance deadlines and planned departure dates for upcoming voyages, with optional Telegram alerts when applications open</span></li>
+                    <li><span class="lang-ja"><strong>お申込みの確認</strong> — 受付番号と登録メールアドレスで、お申込みが受け付けられているかを確認。メール認証でTelegramとお申込みの紐付けもできます</span><span class="lang-en"><strong>Application check</strong> — confirm your application is registered using your Receipt No. and registered email, and link your Telegram account by email verification</span></li>
                 </ul>
                 <p>
-                    <span class="lang-ja">ご相談・お問い合わせの窓口は、現在の公式LINEから順次Telegramへ移行していきます。移行中は両方でご連絡いただけます。</span>
-                    <span class="lang-en">Our contact channel will gradually move from Official LINE to Telegram. During the transition, you can reach us on either.</span>
+                    <span class="lang-ja">ご相談・お問い合わせは、公式LINEとTelegramの両方で承ります。AIアシスタントはTelegramでご利用いただけます。</span>
+                    <span class="lang-en">You can reach us on both Official LINE and Telegram. The AI assistant is available on Telegram.</span>
                 </p>
                 <p>
                     <a id="ai-bot-link" data-bot-url="" href="#contact" class="nav-button" rel="noopener noreferrer">
-                        <span class="lang-ja">Telegramで話しかける</span>
-                        <span class="lang-en">Open on Telegram</span>
+                        <span class="lang-ja">TelegramでAIアシスタントに相談する</span>
+                        <span class="lang-en">Chat with the AI assistant on Telegram</span>
                     </a>
                 </p>
                 <p class="price-note">
-                    <span class="lang-ja">※AIアシスタントは入力のお手伝いと概算のご案内を行うものです。最終的な金額・お取り扱いの可否はスタッフが確認のうえご案内します。</span>
-                    <span class="lang-en">*The AI assistant helps with data entry and provides estimates. Final amounts and acceptance are confirmed by our staff.</span>
+                    <span class="lang-ja">※AIアシスタントのご案内は参考見積りです。正式なお見積り、輸送可否、通関・納品条件は、必要に応じてスタッフが確認のうえご案内します。</span>
+                    <span class="lang-en">*Quotes from the AI assistant are reference estimates. Formal quotes, acceptance, customs and delivery conditions are confirmed by our staff where necessary.</span>
                 </p>
             </div>
         </section>
@@ -539,7 +540,7 @@
             </figure>
             <figure class="contact-qr">
                 <img src="assets/img/telegram.jpg" alt="Telegram QR Code" class="qr-code-large" width="474" height="658" loading="lazy" decoding="async">
-                <figcaption><span class="lang-ja">Telegram（English／AIアシスタント予定）</span><span class="lang-en">Telegram (English / AI assistant soon)</span></figcaption>
+                <figcaption><span class="lang-ja">Telegram（English／<a href="#ai-assistant">AIアシスタント</a>）</span><span class="lang-en">Telegram (English / <a href="#ai-assistant">AI assistant</a>)</span></figcaption>
             </figure>
         </div>
     </div>

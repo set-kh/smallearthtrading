@@ -109,17 +109,20 @@ html[lang="en"] .lang-ja { display: none; }
 `https://t.me/＜Bot名＞` を入れると、ボタンが Bot へのリンクになります
 （`script.js` が `https://t.me/` で始まる値のときだけ差し替えます）。
 空のままの間は「お問い合わせ」の Telegram QR へ誘導します。
-公開時は、同セクションの「近日公開」バッジ（`.ai-badge`）とお知らせの文言も更新してください。
 
-### 窓口の移行（LINE → Telegram）
+Bot の本体は n8n のワークフロー「SME Telegram AI Support」です。
+`#ai-assistant` の「できること」の箇条書きは、そのワークフローの機能
+（料金概算・写真相談・船便スケジュール・申込確認と紐付け）に合わせて書いています。
+Bot に機能を追加・削除したときは、この箇条書きも合わせて更新してください。
 
-現在は「お申込み＝フォーム、ご相談＝公式LINE（日本語）／Telegram（English）」です。
-Telegram への移行が進んだら、次の順で差し替えます。
+### 窓口の運用（LINE と Telegram の並走）
 
-1. `#ai-assistant` の Bot リンクを有効化（上記）
-2. ヒーローの第2ボタン（`.cta-button-secondary`）とお問い合わせの文言を「Telegram」優先に
-3. `#line-for-customers` セクション（LINE登録案内の動画）を Telegram 案内に置き換え
-4. 最後に LINE の QR（`lineofficial-set.jpg`）を外す
+現在は「お申込み＝フォーム、ご相談＝公式LINE（日本語）と Telegram（English／AIアシスタント）」の並走です。
+将来 Telegram に一本化する場合は、次の順で差し替えます（当面は実施しません）。
+
+1. ヒーローの第2ボタン（`.cta-button-secondary`）とお問い合わせの文言を「Telegram」優先に
+2. `#line-for-customers` セクション（LINE登録案内の動画）を Telegram 案内に置き換え
+3. 最後に LINE の QR（`lineofficial-set.jpg`）を外す
 
 ## 動作確認
 

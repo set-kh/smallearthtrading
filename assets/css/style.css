@@ -296,3 +296,4 @@ html[lang="en"] .lang-ja { display: none; }
 .error-links { list-style: none; padding: 0; margin: 30px 0; }
 .error-links li { margin-bottom: 10px; }
 .error-links a { font-weight: 700; }
+.ai-badge-live { background-color: #e8f8ee; color: #1e7e46; border-color: #a9e4c0; }
