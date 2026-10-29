@@ -105,14 +105,16 @@ html[lang="en"] .lang-ja { display: none; }
 ### AIアシスタント（Telegram Bot）のリンク
 
 `index.html` の `<section id="ai-assistant">` にある
-`<a id="ai-bot-link" data-bot-url="">` の `data-bot-url` に
-`https://t.me/＜Bot名＞` を入れると、ボタンが Bot へのリンクになります
+`<a id="ai-bot-link" data-bot-url="https://t.me/sme_office_bot">` の `data-bot-url` が Bot へのリンクです
+（Bot名が変わったらここを書き換えます）。`https://t.me/` で始まる値ならボタンが Bot へのリンクになります
 （`script.js` が `https://t.me/` で始まる値のときだけ差し替えます）。
-空のままの間は「お問い合わせ」の Telegram QR へ誘導します。
+空にすると「お問い合わせ」の Telegram QR へ誘導します。QR画像は `assets/img/telegram-bot-qr.png`。
 
 Bot の本体は n8n のワークフロー「SME Telegram AI Support」です。
 `#ai-assistant` の「できること」の箇条書きは、そのワークフローの機能
 （料金概算・写真相談・船便スケジュール・申込確認と紐付け）に合わせて書いています。
+料金・支払い・サービス内容の文言は、n8n の System Message（Ver.3.1）を正として揃えています。
+System Message を改定したら、料金表・FAQ・重要事項説明も同じ内容に更新してください。
 Bot に機能を追加・削除したときは、この箇条書きも合わせて更新してください。
 
 ### 窓口の運用（LINE と Telegram の並走）

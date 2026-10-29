@@ -297,3 +297,8 @@ html[lang="en"] .lang-ja { display: none; }
 .error-links li { margin-bottom: 10px; }
 .error-links a { font-weight: 700; }
 .ai-badge-live { background-color: #e8f8ee; color: #1e7e46; border-color: #a9e4c0; }
+.ai-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; margin: 1em 0; }
+.ai-cta > div { flex: 1 1 320px; min-width: 0; }
+.ai-qr { margin: 0; text-align: center; }
+.ai-qr img { width: 160px; height: 160px; border: 1px solid #e0e0e0; border-radius: 8px; }
+.ai-qr figcaption { font-size: 0.9rem; font-weight: 700; margin-top: 6px; color: var(--primary-color); }
