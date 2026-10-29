@@ -91,6 +91,41 @@ html[lang="en"] .lang-ja { display: none; }
 各便の確定日程はお知らせ欄と公式LINEで案内する運用のため、
 毎月の日付は料金表側を書き換える必要はありません。
 
+### お申込みフォームのURL
+
+お申込みは Google フォーム `https://forms.gle/1VbQ4Ry41PzQt4AJA` に統一しています。
+フォームを作り直してURLが変わった場合は、次の箇所をすべて置換してください
+（`grep -rn "forms.gle" *.html` で一覧できます）。
+
+- `index.html`: ナビの「お申込み」、ヒーローのボタン、お知らせ、ご利用の流れ、お問い合わせ
+- `procedure.html`: ステップ1
+- `faq-more.html`: Q12・Q16
+- `important-matters.html`: 末尾の同意リンク
+
+### AIアシスタント（Telegram Bot）のリンク
+
+`index.html` の `<section id="ai-assistant">` にある
+`<a id="ai-bot-link" data-bot-url="https://t.me/sme_office_bot">` の `data-bot-url` が Bot へのリンクです
+（Bot名が変わったらここを書き換えます）。`https://t.me/` で始まる値ならボタンが Bot へのリンクになります
+（`script.js` が `https://t.me/` で始まる値のときだけ差し替えます）。
+空にすると「お問い合わせ」の Telegram QR へ誘導します。QR画像は `assets/img/telegram-bot-qr.png`。
+
+Bot の本体は n8n のワークフロー「SME Telegram AI Support」です。
+`#ai-assistant` の「できること」の箇条書きは、そのワークフローの機能
+（料金概算・写真相談・船便スケジュール・申込確認と紐付け）に合わせて書いています。
+料金・支払い・サービス内容の文言は、n8n の System Message（Ver.3.1）を正として揃えています。
+System Message を改定したら、料金表・FAQ・重要事項説明も同じ内容に更新してください。
+Bot に機能を追加・削除したときは、この箇条書きも合わせて更新してください。
+
+### 窓口の運用（LINE と Telegram の並走）
+
+現在は「お申込み＝フォーム、ご相談＝公式LINE（日本語）と Telegram（English／AIアシスタント）」の並走です。
+将来 Telegram に一本化する場合は、次の順で差し替えます（当面は実施しません）。
+
+1. ヒーローの第2ボタン（`.cta-button-secondary`）とお問い合わせの文言を「Telegram」優先に
+2. `#line-for-customers` セクション（LINE登録案内の動画）を Telegram 案内に置き換え
+3. 最後に LINE の QR（`lineofficial-set.jpg`）を外す
+
 ## 動作確認
 
 ローカルでは HTML ファイルをブラウザで直接開けば確認できます。

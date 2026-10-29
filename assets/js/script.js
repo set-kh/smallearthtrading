@@ -89,6 +89,16 @@
            タイトル・placeholder・ボタン状態をここで確定させる */
         setLanguage(readStoredLang() || DEFAULT_LANG);
 
+        /* ---- AIアシスタントのリンク（data-bot-url が設定されていれば Bot へ、空なら #contact のまま） ---- */
+        var botLink = document.getElementById('ai-bot-link');
+        if (botLink) {
+            var botUrl = (botLink.getAttribute('data-bot-url') || '').trim();
+            if (/^https:\/\/t\.me\//.test(botUrl)) {
+                botLink.setAttribute('href', botUrl);
+                botLink.setAttribute('target', '_blank');
+            }
+        }
+
         /* ---- モバイルナビゲーションのトグル ---- */
         var menuToggle = document.querySelector('.menu-toggle');
         var mainNav = document.querySelector('#mainNav');
