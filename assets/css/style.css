@@ -133,7 +133,9 @@ html[lang="en"] .lang-ja { display: none; }
 /* お酒プラン比較表 */
 .plan-table thead th { background-color: var(--primary-color); color: #fff; text-align: center; }
 .plan-table tbody th { width: 26%; }
-.plan-table td:last-child { white-space: nowrap; text-align: center; }
+.plan-table td:last-child { text-align: center; }
+.plan-table td:last-child strong { white-space: nowrap; }
+.plan-table td:last-child small { display: block; white-space: normal; }
 .plan-table small { font-size: 0.8em; color: var(--secondary-color); }
 .price-note { font-size: 0.9em; line-height: 1.7; margin-top: 0.8em; }
 .price-note strong { font-weight: 700; }
