@@ -93,7 +93,7 @@ html[lang="en"] .lang-ja { display: none; }
 
 ### お申込みフォームのURL
 
-お申込みは Google フォーム `https://forms.gle/Lw5NqFom9Lw9euzAA` に統一しています。
+お申込みは Google フォーム `https://forms.gle/1VbQ4Ry41PzQt4AJA` に統一しています。
 フォームを作り直してURLが変わった場合は、次の箇所をすべて置換してください
 （`grep -rn "forms.gle" *.html` で一覧できます）。
 
