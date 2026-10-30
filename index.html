@@ -565,8 +565,8 @@
             <span class="lang-en">Contact & Apply</span>
         </h2>
         <p>
-            <span class="lang-ja"><strong>お申込み</strong>は下記のフォームから、<strong>ご相談・お問い合わせ</strong>は公式LINE（日本語）・公式Telegram（English）のQRコードをスキャンしてご連絡ください。料金の概算や船便スケジュールは、24時間対応の<strong>AIアシスタント</strong>（Telegram）でもご確認いただけます。</span>
-            <span class="lang-en">To <strong>apply</strong>, use the form below. For <strong>consultations and inquiries</strong>, scan the Official LINE (Japanese) or Official Telegram (English) QR code. Price estimates and sea freight schedules are also available 24/7 from our <strong>AI assistant</strong> on Telegram.</span>
+            <span class="lang-ja"><strong>お申込み</strong>は下記のフォームから、<strong>ご相談・お問い合わせ</strong>は公式LINE（日本語）・公式Telegram（English）のQRコードをスキャンしてご連絡ください。料金の概算や船便スケジュールは、24時間対応の<strong>AIアシスタント</strong>（Telegram）でもご確認いただけます。スマホでご覧の場合など、QRコードを読み取れないときは、各QRの下の「開く」ボタンをタップしてください。</span>
+            <span class="lang-en">To <strong>apply</strong>, use the form below. For <strong>consultations and inquiries</strong>, scan the Official LINE (Japanese) or Official Telegram (English) QR code. Price estimates and sea freight schedules are also available 24/7 from our <strong>AI assistant</strong> on Telegram. If you cannot scan the QR code (e.g. on a phone), tap the "Open" button under it.</span>
         </p>
         <p>
             <a href="https://forms.gle/1VbQ4Ry41PzQt4AJA" target="_blank" rel="noopener noreferrer" class="cta-button">
@@ -578,25 +578,29 @@
             <span class="lang-ja">メールでのお問い合わせ：<a href="mailto:sea-freight@metis-inc.co.jp">sea-freight@metis-inc.co.jp</a>（SMALL EARTH TRADING 海外輸送サービス）</span>
             <span class="lang-en">Email inquiries: <a href="mailto:sea-freight@metis-inc.co.jp">sea-freight@metis-inc.co.jp</a> (SMALL EARTH TRADING Overseas Shipping Service)</span>
         </p>
-        <!-- QRは3つ（公式LINE・公式Telegram・AIアシスタント）。スマホではQRを読めないので、画像をタップでも開けるようリンクで包んでいます -->
+        <!-- QRは3つ（公式LINE・公式Telegram・AIアシスタント）。QRを読めない人のために、画像のタップと「開く」ボタンの両方で同じリンク先を開けるようにしています。
+             差し替えるときは、画像ファイル（assets/img/）と、<a> 2か所の href（画像を包むものと「開く」ボタン）を同時に変えてください（README「QR の差し替え」参照）。 -->
         <div class="contact-qr-container">
             <figure class="contact-qr">
-                <a href="https://line.me/R/ti/p/@314vujlc" target="_blank" rel="noopener noreferrer">
+                <a href="https://line.me/R/ti/p/@314vujlc" target="_blank" rel="noopener noreferrer" class="qr-image-link">
                     <img src="assets/img/lineofficial-set.jpg" alt="公式LINE QRコード" class="qr-code-large" width="480" height="480" loading="lazy" decoding="async">
                 </a>
                 <figcaption><span class="lang-ja">公式LINE（日本語）</span><span class="lang-en">Official LINE (Japanese)</span></figcaption>
+                <a href="https://line.me/R/ti/p/@314vujlc" target="_blank" rel="noopener noreferrer" class="qr-open-button"><span class="lang-ja">公式LINEを開く</span><span class="lang-en">Open LINE</span></a>
             </figure>
             <figure class="contact-qr">
-                <a href="https://t.me/+855967881509" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/+855967881509" target="_blank" rel="noopener noreferrer" class="qr-image-link">
                     <img src="assets/img/telegram-official-qr.jpg" alt="公式Telegram QRコード" class="qr-code-large" width="480" height="480" loading="lazy" decoding="async">
                 </a>
                 <figcaption><span class="lang-ja">公式Telegram（English）</span><span class="lang-en">Official Telegram (English)</span></figcaption>
+                <a href="https://t.me/+855967881509" target="_blank" rel="noopener noreferrer" class="qr-open-button"><span class="lang-ja">Telegramを開く</span><span class="lang-en">Open Telegram</span></a>
             </figure>
             <figure class="contact-qr">
-                <a href="https://t.me/sme_office_bot" target="_blank" rel="noopener noreferrer">
+                <a href="https://t.me/sme_office_bot" target="_blank" rel="noopener noreferrer" class="qr-image-link">
                     <img src="assets/img/telegram-bot-qr.png" alt="AIアシスタント（Telegram @sme_office_bot）QRコード" class="qr-code-large" width="480" height="480" loading="lazy" decoding="async">
                 </a>
                 <figcaption><span class="lang-ja">AIアシスタント（Telegram・24時間）<br><small>@sme_office_bot</small></span><span class="lang-en">AI Assistant (Telegram, 24/7)<br><small>@sme_office_bot</small></span></figcaption>
+                <a href="https://t.me/sme_office_bot" target="_blank" rel="noopener noreferrer" class="qr-open-button"><span class="lang-ja">AIアシスタントを開く</span><span class="lang-en">Open AI Assistant</span></a>
             </figure>
         </div>
     </div>

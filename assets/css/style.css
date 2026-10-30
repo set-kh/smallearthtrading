@@ -162,8 +162,11 @@ html[lang="en"] .lang-ja { display: none; }
 /* QRは3つ（公式LINE・公式Telegram・AIアシスタント）。PCでは3つ横並び、スマホでは縦に並ぶ */
 .contact-qr-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; text-align: center; margin-top: 30px; }
 .contact-qr { margin: 0; flex: 0 0 auto; }
-.contact-qr a { display: inline-block; line-height: 0; }
+.contact-qr .qr-image-link { display: inline-block; line-height: 0; }
 .contact-qr figcaption small { font-weight: 400; font-size: 0.85em; }
+/* QRを読めない人向けの「開く」ボタン（青背景の上なので白い枠線のボタンにする） */
+.contact-qr .qr-open-button { display: inline-block; margin-top: 10px; padding: 8px 18px; border: 2px solid #fff; border-radius: 999px; color: #fff; font-weight: 700; font-size: 0.9em; line-height: 1.4; text-decoration: none; transition: background-color 0.2s, color 0.2s; }
+.contact-qr .qr-open-button:hover, .contact-qr .qr-open-button:focus { background-color: #fff; color: var(--primary-color); text-decoration: none; }
 /* 青背景の上では青いリンクが見えないため、お問い合わせ内の文中リンク（メールなど）は白にする */
 #contact p a:not(.cta-button):not(.cta-button-secondary) { color: #fff; text-decoration: underline; }
 .contact-qr figcaption { margin-top: 10px; font-weight: 700; color: white; }
