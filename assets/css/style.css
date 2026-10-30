@@ -124,6 +124,17 @@ html[lang="en"] .lang-ja { display: none; }
 .news-item p { margin-bottom: 0.6em; }
 .news-item ul { margin-bottom: 0.6em; }
 
+/* 2件目以降の折り畳み（script.js が .news-item-collapsed と .news-body を付与） */
+.news-item-collapsed { padding: 16px 24px; }
+.news-item-collapsed h3 { margin-bottom: 0.2em; }
+.news-title-clickable { cursor: pointer; }
+.news-toggle { background: none; border: none; padding: 0; margin: 0 0 0.2em; font-size: 0.9em; color: var(--primary-color); cursor: pointer; font-family: inherit; }
+.news-toggle::before { content: "▶"; display: inline-block; font-size: 0.7em; margin-right: 0.4em; transition: transform 0.2s; }
+.news-item-open .news-toggle::before { transform: rotate(90deg); }
+.news-toggle-close, .news-item-open .news-toggle-open { display: none; }
+.news-item-open .news-toggle-close { display: inline; }
+.news-body { margin-top: 0.8em; }
+
 /* 料金表セクション */
 .price-category { margin-bottom: 40px; }
 .price-table, .price-table-visual { width: 100%; margin-top: 1em; }
@@ -133,7 +144,9 @@ html[lang="en"] .lang-ja { display: none; }
 /* お酒プラン比較表 */
 .plan-table thead th { background-color: var(--primary-color); color: #fff; text-align: center; }
 .plan-table tbody th { width: 26%; }
-.plan-table td:last-child { white-space: nowrap; text-align: center; }
+.plan-table td:last-child { text-align: center; }
+.plan-table td:last-child strong { white-space: nowrap; }
+.plan-table td:last-child small { display: block; white-space: normal; }
 .plan-table small { font-size: 0.8em; color: var(--secondary-color); }
 .price-note { font-size: 0.9em; line-height: 1.7; margin-top: 0.8em; }
 .price-note strong { font-weight: 700; }
@@ -144,11 +157,16 @@ html[lang="en"] .lang-ja { display: none; }
 .faq-item h3 { font-size: 1.2rem; margin-bottom: 0.3em; color: var(--primary-color);}
 .faq-more { margin-top: 30px; text-align: center; font-size: 1.1em; }
 .important-link { margin-top: 20px; font-size: 1.05em; font-weight: 700; }
-.contact-qr-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; text-align: center; margin-top: 30px; }
-.contact-qr { margin: 0; }
+/* QRは3つ（公式LINE・公式Telegram・AIアシスタント）。PCでは3つ横並び、スマホでは縦に並ぶ */
+.contact-qr-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; text-align: center; margin-top: 30px; }
+.contact-qr { margin: 0; flex: 0 0 auto; }
+.contact-qr a { display: inline-block; line-height: 0; }
+.contact-qr figcaption small { font-weight: 400; font-size: 0.85em; }
+/* 青背景の上では青いリンクが見えないため、お問い合わせ内の文中リンク（メールなど）は白にする */
+#contact p a:not(.cta-button):not(.cta-button-secondary) { color: #fff; text-decoration: underline; }
 .contact-qr figcaption { margin-top: 10px; font-weight: 700; color: white; }
 .qr-code { width: 140px; height: auto; border: 1px solid #eee; }
-.qr-code-large { width: 200px; height: auto; border: 3px solid white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.qr-code-large { width: 180px; height: auto; border: 3px solid white; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
 
 /* ヒーローの2ボタン（申込フォーム／相談LINE） */
 .cta-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }

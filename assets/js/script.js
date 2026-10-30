@@ -99,6 +99,62 @@
             }
         }
 
+        /* ---- お知らせの折り畳み（一番上の1件は全文、2件目以降は日付＋タイトルだけ表示） ----
+           HTML 側は従来どおり <article class="news-item"> を上に追加するだけでよい。
+           JS が無効な環境では何もしない（全文が表示される）。 */
+        var newsItems = document.querySelectorAll('#news .news-item');
+        Array.prototype.forEach.call(newsItems, function (item, index) {
+            if (index === 0) {
+                return;
+            }
+            var heading = item.querySelector('h3');
+            if (!heading) {
+                return;
+            }
+
+            /* h3 より後ろの要素（本文）をまとめて隠す */
+            var body = document.createElement('div');
+            body.className = 'news-body';
+            body.id = 'news-body-' + index;
+            var node = heading.nextSibling;
+            while (node) {
+                var next = node.nextSibling;
+                body.appendChild(node);
+                node = next;
+            }
+            if (!body.childNodes.length) {
+                return;
+            }
+            body.hidden = true;
+            item.appendChild(body);
+            item.classList.add('news-item-collapsed');
+
+            /* 開閉ボタン（日英のラベルは CSS の lang ルールで切り替わる） */
+            var toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'news-toggle';
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-controls', body.id);
+            toggle.innerHTML =
+                '<span class="news-toggle-open"><span class="lang-ja">続きを読む</span><span class="lang-en">Read more</span></span>' +
+                '<span class="news-toggle-close"><span class="lang-ja">閉じる</span><span class="lang-en">Close</span></span>';
+            heading.insertAdjacentElement('afterend', toggle);
+
+            var setOpen = function (open) {
+                body.hidden = !open;
+                toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                item.classList.toggle('news-item-open', open);
+            };
+            toggle.addEventListener('click', function () {
+                setOpen(body.hidden);
+            });
+            /* タイトルのクリックでも開閉できるようにする */
+            heading.classList.add('news-title-clickable');
+            heading.addEventListener('click', function () {
+                setOpen(body.hidden);
+            });
+        });
+
         /* ---- モバイルナビゲーションのトグル ---- */
         var menuToggle = document.querySelector('.menu-toggle');
         var mainNav = document.querySelector('#mainNav');

@@ -85,6 +85,10 @@ html[lang="en"] .lang-ja { display: none; }
 
 日付は表示テキストと `<time datetime="YYYY-MM-DD">` の両方を更新してください。
 
+表示は「一番上の1件だけ全文、2件目以降は日付＋タイトルのみ（クリックで展開）」です。
+この折り畳みは `script.js` が自動で行うため、HTML 側で特別な作業は不要です
+（`<h3>` より後ろの要素が本文として隠れます。日付の `<p class="news-date">` は `<h3>` の前に置いてください）。
+
 ### 便のスケジュール
 
 料金表に記載しているのは原則のサイクルです。
@@ -110,10 +114,24 @@ html[lang="en"] .lang-ja { display: none; }
 （`script.js` が `https://t.me/` で始まる値のときだけ差し替えます）。
 空にすると「お問い合わせ」の Telegram QR へ誘導します。QR画像は `assets/img/telegram-bot-qr.png`。
 
+「お問い合わせ」の QR は3つです（リンク先を変えるときは `<a>` の `href` と QR 画像を両方差し替えます）。
+
+| 表示 | 画像 | リンク先 |
+| --- | --- | --- |
+| 公式LINE | `assets/img/lineofficial-set.jpg` | `https://line.me/R/ti/p/@314vujlc` |
+| 公式Telegram | `assets/img/telegram-official-qr.jpg`（`telegram.jpg` のQR部分を正方形に切り出したもの） | `https://t.me/+855967881509` |
+| AIアシスタント | `assets/img/telegram-bot-qr.png` | `https://t.me/sme_office_bot` |
+
 Bot の本体は n8n のワークフロー「SME Telegram AI Support」です。
 `#ai-assistant` の「できること」の箇条書きは、そのワークフローの機能
 （料金概算・写真相談・船便スケジュール・申込確認と紐付け）に合わせて書いています。
-料金・支払い・サービス内容の文言は、n8n の System Message（Ver.3.1）を正として揃えています。
+料金・支払い・サービス内容の文言は、n8n の System Message（Ver.3.1 最終版。Ver.3.5 は返信書式のみの変更）を正として揃えています。
+ただし次の2点は社内・Bot のみの扱いで、サイトには載せません。
+
+- 3箱までは箱単価・4箱以上は立米で計算する社内ルール
+
+一般のお荷物にお酒を同梱する場合の酒類取扱手数料（お酒が入る箱1箱あたり15ドル）は、
+料金表「お酒の梱包輸送」の注記1行と重要事項説明 第3条③にだけ書いています（表の行にはしません。2026-10-30 決定）。
 System Message を改定したら、料金表・FAQ・重要事項説明も同じ内容に更新してください。
 Bot に機能を追加・削除したときは、この箇条書きも合わせて更新してください。
 
