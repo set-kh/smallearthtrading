@@ -122,6 +122,33 @@ html[lang="en"] .lang-ja { display: none; }
 | 公式Telegram | `assets/img/telegram-official-qr.jpg`（`telegram.jpg` のQR部分を正方形に切り出したもの） | `https://t.me/+855967881509` |
 | AIアシスタント | `assets/img/telegram-bot-qr.png` | `https://t.me/sme_office_bot` |
 
+各QRの下には同じリンク先を開く「開く」ボタン（`.qr-open-button`）があり、
+QRを読み取れない人（スマホで見ている人など）はそこをタップします。
+画像を包む `<a class="qr-image-link">` と「開く」ボタンの `<a>` の `href` は必ず同じ値にしてください。
+
+### QR の差し替え
+
+**リンク先は同じで画像だけ変える場合**（デザイン変更など）
+
+1. 新しいQR画像を用意する（正方形・480×480px 程度の PNG か JPG。余白＝白い縁を残す）
+2. GitHub の `assets/img/` で該当ファイルを開き、同じファイル名でアップロードして置き換える（Add file → Upload files）
+3. ブランチを切ってコミット → Pull request → Merge。数分で公開される
+4. 公開後、スマホのカメラで実際に読み取れることを確認する（ブラウザに古い画像が残る場合はスーパーリロード Ctrl+Shift+R）
+
+**リンク先が変わる場合**（LINE アカウントや Bot 名の変更など）
+
+1. 新しいリンク先のQR画像を用意する（LINE 公式アカウントなら管理画面の「友だち追加ガイド」から、Telegram なら Bot／アカウントの QR から取得）
+2. 画像を `assets/img/` に新しいファイル名で追加する（古い画像がキャッシュされないよう、名前を変えるのが確実）
+3. `index.html` の `<section id="contact">` で、該当する `<figure class="contact-qr">` 内の
+   `<img src="...">` と `<a ... href="...">` 2か所（画像を包むものと「開く」ボタン）を書き換える
+4. 同じリンク先を使っている他の箇所も置換する
+   （LINE: ヒーローの第2ボタン・`#line-for-customers`・`important-matters.html` の末尾。
+   Bot: `#ai-assistant` の `data-bot-url` と `href`、`assets/img/telegram-bot-qr.png`。
+   `grep -rn "line.me\|t.me" *.html` で一覧できる）
+5. Pull request → Merge → 公開後にスマホで読み取りとタップの両方を確認する
+
+リンク先の URL だけ決まっていれば、QR 画像の生成と差し替え・読み取りテストは Claude に依頼できます。
+
 Bot の本体は n8n のワークフロー「SME Telegram AI Support」です。
 `#ai-assistant` の「できること」の箇条書きは、そのワークフローの機能
 （料金概算・写真相談・船便スケジュール・申込確認と紐付け）に合わせて書いています。
