@@ -137,6 +137,8 @@ html[lang="en"] .lang-ja { display: none; }
 
 /* 料金表セクション */
 .price-category { margin-bottom: 40px; }
+/* 小口輸送の中の「①定額サービス」「②0.5m³以上」の小見出し */
+.price-subheading { font-family: var(--heading-font); font-weight: 700; font-size: 1.05rem; color: var(--primary-color); margin-top: 1.8em; margin-bottom: 0.2em; padding-left: 0.6em; border-left: 4px solid var(--primary-color); line-height: 1.5; }
 .price-table, .price-table-visual { width: 100%; margin-top: 1em; }
 .price-table-visual td { text-align: center; }
 .price-image { max-width: 80px; height: auto; }
