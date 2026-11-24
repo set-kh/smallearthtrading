@@ -99,41 +99,61 @@
             }
         }
 
-        /* ---- お知らせの折り畳み（一番上の1件は全文、2件目以降は日付＋タイトルだけ表示） ----
+        /* ---- お知らせの開閉 ----
+           ・各お知らせは「日付＋タイトル」に折り畳める（タイトルか「続きを読む／閉じる」で開閉）。
+           ・初期状態は一番上の1件だけ開き、2件目以降は閉じる。
+           ・見出しの横に「すべて開く／すべて閉じる」ボタンを出す。
            HTML 側は従来どおり <article class="news-item"> を上に追加するだけでよい。
            JS が無効な環境では何もしない（全文が表示される）。 */
-        var newsItems = document.querySelectorAll('#news .news-item');
-        Array.prototype.forEach.call(newsItems, function (item, index) {
-            if (index === 0) {
+        var newsSection = document.querySelector('#news');
+        var newsItems = newsSection ? newsSection.querySelectorAll('.news-item') : [];
+        var newsEntries = [];      /* 開閉できるお知らせ: { body: 本文要素, setOpen: 開閉関数 } */
+        var newsToggleAll = null;  /* 「すべて開く／すべて閉じる」ボタン */
+
+        /* すべて開いているかどうかで一括ボタンの表示を合わせる */
+        var syncNewsToggleAll = function () {
+            if (!newsToggleAll) {
                 return;
             }
+            var allOpen = newsEntries.every(function (entry) {
+                return !entry.body.hidden;
+            });
+            newsToggleAll.classList.toggle('news-toggle-all-opened', allOpen);
+            newsToggleAll.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+        };
+
+        Array.prototype.forEach.call(newsItems, function (item, index) {
             var heading = item.querySelector('h3');
             if (!heading) {
                 return;
             }
 
-            /* h3 より後ろの要素（本文）をまとめて隠す */
+            /* h3 より後ろの要素（本文）をまとめて1つの箱に入れる */
             var body = document.createElement('div');
             body.className = 'news-body';
             body.id = 'news-body-' + index;
             var node = heading.nextSibling;
+            var hasContent = false;
             while (node) {
                 var next = node.nextSibling;
+                /* 空白だけのテキストやコメントは本文として数えない */
+                if (node.nodeType === 1 || (node.nodeType === 3 && node.textContent.trim() !== '')) {
+                    hasContent = true;
+                }
                 body.appendChild(node);
                 node = next;
             }
-            if (!body.childNodes.length) {
+            item.appendChild(body);
+            if (!hasContent) {
+                /* 本文が無いお知らせ（タイトルのみ）は開閉の対象にしない */
                 return;
             }
-            body.hidden = true;
-            item.appendChild(body);
             item.classList.add('news-item-collapsed');
 
             /* 開閉ボタン（日英のラベルは CSS の lang ルールで切り替わる） */
             var toggle = document.createElement('button');
             toggle.type = 'button';
             toggle.className = 'news-toggle';
-            toggle.setAttribute('aria-expanded', 'false');
             toggle.setAttribute('aria-controls', body.id);
             toggle.innerHTML =
                 '<span class="news-toggle-open"><span class="lang-ja">続きを読む</span><span class="lang-en">Read more</span></span>' +
@@ -145,15 +165,47 @@
                 toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
                 item.classList.toggle('news-item-open', open);
             };
+            newsEntries.push({ body: body, setOpen: setOpen });
+
+            /* 初期状態: 一番上（最新）の1件だけ開いておく */
+            setOpen(index === 0);
+
             toggle.addEventListener('click', function () {
                 setOpen(body.hidden);
+                syncNewsToggleAll();
             });
             /* タイトルのクリックでも開閉できるようにする */
             heading.classList.add('news-title-clickable');
             heading.addEventListener('click', function () {
                 setOpen(body.hidden);
+                syncNewsToggleAll();
             });
         });
+
+        /* 「すべて開く／すべて閉じる」ボタン（開閉できるお知らせが2件以上あるときだけ出す） */
+        var newsHeading = newsSection ? newsSection.querySelector('h2') : null;
+        if (newsHeading && newsEntries.length > 1) {
+            var newsControls = document.createElement('div');
+            newsControls.className = 'news-controls';
+            newsToggleAll = document.createElement('button');
+            newsToggleAll.type = 'button';
+            newsToggleAll.className = 'news-toggle-all';
+            newsToggleAll.innerHTML =
+                '<span class="news-toggle-all-open"><span class="lang-ja">すべて開く</span><span class="lang-en">Expand all</span></span>' +
+                '<span class="news-toggle-all-close"><span class="lang-ja">すべて閉じる</span><span class="lang-en">Collapse all</span></span>';
+            newsControls.appendChild(newsToggleAll);
+            newsHeading.insertAdjacentElement('afterend', newsControls);
+
+            newsToggleAll.addEventListener('click', function () {
+                /* すべて開いていれば全部閉じ、1件でも閉じていれば全部開く */
+                var openAll = !newsToggleAll.classList.contains('news-toggle-all-opened');
+                newsEntries.forEach(function (entry) {
+                    entry.setOpen(openAll);
+                });
+                syncNewsToggleAll();
+            });
+            syncNewsToggleAll();
+        }
 
         /* ---- モバイルナビゲーションのトグル ---- */
         var menuToggle = document.querySelector('.menu-toggle');
