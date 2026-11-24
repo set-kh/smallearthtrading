@@ -103,11 +103,14 @@
            ・各お知らせは「日付＋タイトル」に折り畳める（タイトルか「続きを読む／閉じる」で開閉）。
            ・初期状態は一番上の1件だけ開き、2件目以降は閉じる。
            ・見出しの横に「すべて開く／すべて閉じる」ボタンを出す。
+           ・表示するのは直近 NEWS_VISIBLE_COUNT 件だけ。それより古いものは
+             「過去のお知らせを見る」ボタンを押すまで隠す。
            HTML 側は従来どおり <article class="news-item"> を上に追加するだけでよい。
            JS が無効な環境では何もしない（全文が表示される）。 */
         var newsSection = document.querySelector('#news');
         var newsItems = newsSection ? newsSection.querySelectorAll('.news-item') : [];
-        var newsEntries = [];      /* 開閉できるお知らせ: { body: 本文要素, setOpen: 開閉関数 } */
+        var NEWS_VISIBLE_COUNT = 3; /* 最初から表示するお知らせの件数（直近○件） */
+        var newsEntries = [];      /* 開閉できるお知らせ: { item: 記事要素, body: 本文要素, setOpen: 開閉関数 } */
         var newsToggleAll = null;  /* 「すべて開く／すべて閉じる」ボタン */
 
         /* すべて開いているかどうかで一括ボタンの表示を合わせる */
@@ -115,8 +118,9 @@
             if (!newsToggleAll) {
                 return;
             }
+            /* 隠れている過去のお知らせは判定に含めない */
             var allOpen = newsEntries.every(function (entry) {
-                return !entry.body.hidden;
+                return entry.item.hidden || !entry.body.hidden;
             });
             newsToggleAll.classList.toggle('news-toggle-all-opened', allOpen);
             newsToggleAll.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
@@ -165,7 +169,7 @@
                 toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
                 item.classList.toggle('news-item-open', open);
             };
-            newsEntries.push({ body: body, setOpen: setOpen });
+            newsEntries.push({ item: item, body: body, setOpen: setOpen });
 
             /* 初期状態: 一番上（最新）の1件だけ開いておく */
             setOpen(index === 0);
@@ -200,11 +204,43 @@
                 /* すべて開いていれば全部閉じ、1件でも閉じていれば全部開く */
                 var openAll = !newsToggleAll.classList.contains('news-toggle-all-opened');
                 newsEntries.forEach(function (entry) {
-                    entry.setOpen(openAll);
+                    /* 隠れている過去のお知らせは対象外 */
+                    if (!entry.item.hidden) {
+                        entry.setOpen(openAll);
+                    }
                 });
                 syncNewsToggleAll();
             });
             syncNewsToggleAll();
+        }
+
+        /* 直近 NEWS_VISIBLE_COUNT 件より古いお知らせを隠し、「過去のお知らせを見る」ボタンで出し入れする */
+        var olderNews = Array.prototype.slice.call(newsItems, NEWS_VISIBLE_COUNT);
+        if (olderNews.length) {
+            var lastNewsItem = newsItems[newsItems.length - 1];
+            var newsMore = document.createElement('div');
+            newsMore.className = 'news-more';
+            var newsMoreButton = document.createElement('button');
+            newsMoreButton.type = 'button';
+            newsMoreButton.className = 'news-toggle-all news-more-button';
+            newsMoreButton.innerHTML =
+                '<span class="news-more-show"><span class="lang-ja">過去のお知らせを見る（' + olderNews.length + '件）</span><span class="lang-en">Show older news (' + olderNews.length + ')</span></span>' +
+                '<span class="news-more-hide"><span class="lang-ja">過去のお知らせを隠す</span><span class="lang-en">Hide older news</span></span>';
+            newsMore.appendChild(newsMoreButton);
+            lastNewsItem.insertAdjacentElement('afterend', newsMore);
+
+            var setOlderNewsShown = function (shown) {
+                olderNews.forEach(function (item) {
+                    item.hidden = !shown;
+                });
+                newsMoreButton.classList.toggle('news-more-opened', shown);
+                newsMoreButton.setAttribute('aria-expanded', shown ? 'true' : 'false');
+                syncNewsToggleAll();
+            };
+            newsMoreButton.addEventListener('click', function () {
+                setOlderNewsShown(!newsMoreButton.classList.contains('news-more-opened'));
+            });
+            setOlderNewsShown(false);
         }
 
         /* ---- モバイルナビゲーションのトグル ---- */
